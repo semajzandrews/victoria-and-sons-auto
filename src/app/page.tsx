@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CallOrText from "../components/CallOrText";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import SmoothScroll from "../components/SmoothScroll";
@@ -65,7 +66,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={300}>
             <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap", marginTop: "1.8rem" }}>
-              <a className="btn-scan" href="tel:+19736231414">Call (973) 623-1414</a>
+              <CallOrText triggerClass="btn-scan" drop="down" align="left" collapse={false} />
               <a className="btn-ghost" href="#tracker">Check on your car</a>
             </div>
           </Reveal>
@@ -228,9 +229,13 @@ export default function Home() {
                 <p className="body-tx" style={{ fontSize: 16, marginTop: "0.5rem" }}>
                   1233 Broad St<br />Newark, NJ 07114
                 </p>
-                <a className="btn-scan" href="tel:+19736231414" style={{ marginTop: "0.6rem" }}>
-                  Call (973) 623-1414
-                </a>
+                <CallOrText
+                  triggerClass="btn-scan"
+                  drop="down"
+                  align="left"
+                  collapse={false}
+                  style={{ marginTop: "0.6rem" }}
+                />
               </address>
               <div style={{ marginTop: "2rem" }}>
                 <p className="label" style={{ marginBottom: "0.8rem" }}>Hours</p>
@@ -293,16 +298,9 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* fixed tap-to-call — collapses to a 48px circle under 480px */}
-      <a className="callpill" href="tel:+19736231414" aria-label="Call Victoria and Sons Auto Repair at (973) 623-1414">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"
-            fill="currentColor"
-          />
-        </svg>
-        <span className="callpill-num">(973) 623-1414</span>
-      </a>
+      {/* fixed call-or-text — the .cot root carries the fixed position, the
+          trigger collapses to a 48px circle under 480px */}
+      <CallOrText triggerClass="callpill" drop="up" align="right" style={{ position: "fixed", right: 18, bottom: 18, zIndex: 150 }} />
     </main>
   );
 }

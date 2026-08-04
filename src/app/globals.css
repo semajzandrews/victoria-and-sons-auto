@@ -173,14 +173,18 @@ body {
   color: var(--muted); text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--scan); }
-.nav-links a.nav-call {
+/* the chooser renders a <button>, so this must not be anchor-only */
+.nav-links a.nav-call,
+.nav-links .nav-call {
+  display: inline-flex; align-items: center; gap: 0.45rem;
   font-family: var(--font-body); font-weight: 700; font-size: 14px;
   letter-spacing: 0.05em;
   color: var(--oil); background: var(--scan);
   padding: 0.55rem 1.1rem; border-radius: 4px; text-decoration: none;
   transition: box-shadow 0.25s;
 }
-.nav-links a.nav-call:hover { box-shadow: 0 0 20px rgba(55,224,122,0.45); color: var(--oil); }
+.nav-links a.nav-call:hover,
+.nav-links .nav-call:hover { box-shadow: 0 0 20px rgba(55,224,122,0.45); color: var(--oil); }
 @media (max-width: 760px) { .nav-links .nav-anchor { display: none; } }
 
 /* ─── Hero ────────────────────────────────────────────────────── */
@@ -405,3 +409,11 @@ a { color: inherit; }
   .cols-2.lead-l { grid-template-columns: 1.15fr 0.85fr; }
   .cols-2.lead-r { grid-template-columns: 0.85fr 1.15fr; }
 }
+
+/* ─── Call-or-Text chooser ────────────────────────────────────── */
+/* the fixed pill becomes a chooser trigger, so the .cot root carries the
+   fixed positioning and the button inside it sits normally */
+/* the .cot root carries the fixed position (set inline at the call site), so the
+   pill itself must sit normally inside it or it fixes twice */
+.cot .callpill { position: static; border: none; cursor: pointer; }
+.cot .nav-call, .cot .btn-scan { border: none; cursor: pointer; font: inherit; }

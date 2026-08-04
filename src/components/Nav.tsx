@@ -1,3 +1,5 @@
+import CallOrText from "./CallOrText";
+
 export default function Nav() {
   return (
     <nav className="nav" aria-label="Main">
@@ -10,7 +12,7 @@ export default function Nav() {
           <a className="nav-anchor" href="#services">What we do</a>
           <a className="nav-anchor" href="#reviews">Reviews</a>
           <a className="nav-anchor" href="#visit">Visit</a>
-          <a className="nav-call" href="tel:+19736231414">(973) 623-1414</a>
+          <CallOrText triggerClass="nav-call" drop="down" align="right" />
         </div>
       </div>
     </nav>
